@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Observable, catchError, map } from "rxjs";
-import { AuthService } from "../authComponent/service/auth.service";
+import { AuthService } from "../auth/service/auth.service";
 
 /**
  * Error Interceptor will check that if any error return in API call.
@@ -10,7 +10,7 @@ import { AuthService } from "../authComponent/service/auth.service";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
   userToken = localStorage.getItem('access-token');
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authData = localStorage.getItem('access-token')

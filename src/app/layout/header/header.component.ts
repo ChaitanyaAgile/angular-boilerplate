@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { AuthService } from '../../authComponent/service/auth.service';
+import { AuthService } from '../../auth/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { responseModel } from '../../model/reponseModel';
 
@@ -14,9 +14,9 @@ export class HeaderComponent implements OnInit {
   userToken: any;
   constructor(private authService: AuthService,
     private router: Router) {
-      /**
-       * check that use is login or not base on that we will show hide login logout button
-       */
+    /**
+     * check that use is login or not base on that we will show hide login logout button
+     */
     this.authService.isLogin.subscribe((res) => {
       this.userToken = localStorage.getItem('access-token');
       if (this.userToken) {
@@ -35,9 +35,9 @@ export class HeaderComponent implements OnInit {
    */
   logout() {
     this.authService.logout(this.userToken).subscribe((res: responseModel) => {
-    // to clear locaslstorage value and clear token and permission use this method
-    this.authService.clearLocalStorage();
-    
+      // to clear locaslstorage value and clear token and permission use this method
+      this.authService.clearLocalStorage();
+
       this.router.navigateByUrl('/login');
     });
     // to clear locaslstorage value and clear token and permission use this method
